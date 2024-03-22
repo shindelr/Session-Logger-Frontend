@@ -1,7 +1,16 @@
-import './App.css'
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; 
+import Header from "./components/Header";
+import InputForm from "./components/InputForm";
 
 function App() {
-  return <h1>Sesh Logger, Let's Go!!</h1>
+  return (
+    <>
+      <Header>Session Logger</Header>
+      <InputForm/>
+    </>
+  );
 }
 
-export default App
+export default App;
