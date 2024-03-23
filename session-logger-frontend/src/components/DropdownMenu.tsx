@@ -1,5 +1,4 @@
 // Dropdown component.
-
 import DropdownOptions from "./DropdownOptions";
 
 interface Props {
@@ -8,6 +7,8 @@ interface Props {
 }
 
 const DropdownMenu = ({ inputName, itemArray }: Props) => {
+
+
   return (
     <div className="dropdown">
       <button
