@@ -3,6 +3,7 @@
 // and a submit button.
 
 import DropdownMenu from "./DropdownMenu";
+import SelectMenu from "./SelectMenu";
 import TimeInput from "./timeInput";
 
 const InputForm = () => {
@@ -12,7 +13,8 @@ const InputForm = () => {
     <form>
       <div className="mb-3">
         <label className="form-label"> Where'd ya surf?</label>
-        <DropdownMenu inputName="Select a spot" itemArray={surfSpots} />
+        {/* <DropdownMenu inputName="Select a spot" itemArray={surfSpots} /> */}
+        <SelectMenu itemsArray={surfSpots}/>
 
         <div>
           <label className="form-label"> What time did you get in?</label>

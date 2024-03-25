@@ -8,11 +8,15 @@ interface Props {
 const DropdownOptions = ({ itemsArray }: Props) => {
   const [input, setInput] = useState('') ;
 
+  const handleClick = (item: string) => {
+    setInput(item)
+  }
+
   return (
     <ul className="dropdown-menu">
       {itemsArray.map((item, index) => (
         <li key={index}>
-          <a className="dropdown-item" onClick={() => {setInput(item)}}>{item}</a>
+          <a className="dropdown-item" onClick={() => handleClick(item)}>{item}</a>
         </li>
       ))}
     </ul>
