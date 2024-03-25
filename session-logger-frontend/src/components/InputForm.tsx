@@ -2,9 +2,9 @@
 // containing a dropdown for surf spots, two input fields for time, a star rating,
 // and a submit button.
 
-import DropdownMenu from "./DropdownMenu";
 import SelectMenu from "./SelectMenu";
 import TimeInput from "./timeInput";
+import StarRater from "./StarRater";
 
 const InputForm = () => {
   const surfSpots: string[] = ["Agate Beach", "Otter Rock", "South Beach"];
@@ -12,19 +12,26 @@ const InputForm = () => {
   return (
     <form>
       <div className="mb-3">
-        <label className="form-label"> Where'd ya surf?</label>
-        {/* <DropdownMenu inputName="Select a spot" itemArray={surfSpots} /> */}
-        <SelectMenu itemsArray={surfSpots}/>
+        <div id="spot-select-container">
+          <label className="form-label"> Where'd ya surf?</label>
+          <SelectMenu itemsArray={surfSpots} />
+        </div>
 
-        <div>
+        <div id="time-in-container">
           <label className="form-label"> What time did you get in?</label>
           <TimeInput />
         </div>
 
-        <div>
+        <div id="time-out-container">
           <label className="form-label"> What time did you get out?</label>
           <TimeInput />
         </div>
+
+        <div id="sesh-rating-container">
+            <label className="form-label">How would you rate your session?</label>
+            <StarRater />
+         </div>
+
       </div>
     </form>
   );
