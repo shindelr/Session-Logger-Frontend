@@ -5,6 +5,7 @@
 import SelectMenu from "./SelectMenu";
 import TimeInput from "./timeInput";
 import StarRater from "./StarRater";
+import Button from "./Button";
 
 const InputForm = () => {
   const surfSpots: string[] = ["Agate Beach", "Otter Rock", "South Beach"];
@@ -28,9 +29,13 @@ const InputForm = () => {
         </div>
 
         <div id="sesh-rating-container">
-            <label className="form-label">How would you rate your session?</label>
-            <StarRater />
-         </div>
+          <label className="form-label">How would you rate your session?</label>
+          <StarRater />
+        </div>
+
+        <div id="submit-btn-container">
+            <Button buttonType="primary" label="Submit" />
+        </div>
 
       </div>
     </form>
