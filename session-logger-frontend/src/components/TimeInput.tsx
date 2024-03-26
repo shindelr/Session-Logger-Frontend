@@ -1,10 +1,13 @@
+import { ReactEventHandler } from "react";
+
 // Renders a time input component.
 interface Props {
+  onChange: (selectedTime: string) => void
 //   min: number;
 //   max: number;
 }
 
-const TimeInput = () => {
+const TimeInput = ({ onChange }: Props) => {
   //   Generate times of day by half hour increments
   const timeGenerator = () => {
     const times: string[] = [];
@@ -32,6 +35,11 @@ const TimeInput = () => {
 
   let timeList: string[] = timeGenerator();
 
+  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedTimeString: string = e.target.value;
+    onChange(selectedTimeString)
+  } 
+
   return (
     <>
       <datalist id="time-list">
@@ -43,6 +51,7 @@ const TimeInput = () => {
         type="time"
         list="time-list"
         className="form-label"
+        onChange={handleTimeChange}
         // min={min}
         // max={max
       ></input>
