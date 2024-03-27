@@ -1,1 +1,16 @@
 /* Only styles things in the App.tsx scope */
+
+
+
+
+
+/* Star Rating Stars Styling */
+.star {
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.star-filled {
+    color: orange;
+    font-size: 30px;
+}

@@ -14,7 +14,7 @@ const InputForm = () => {
   const [spot, setSpot] = useState("");
   const [timeIn, setTimeIn] = useState("");
   const [timeOut, setTimeOut] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState<null | number>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const InputForm = () => {
     setSpot("");
     setTimeIn("");
     setTimeOut("");
-    setRating(0);
+    setRating(null);
   };
 
   return (
@@ -73,7 +73,8 @@ const InputForm = () => {
         <div id="sesh-rating-container">
           <label className="form-label">How would you rate your session?</label>
           <StarRater
-            onChange={(selectedStars: number) => {
+            value={rating}
+            onChange={(selectedStars: number | null) => {
               setRating(selectedStars);
             }}
           />

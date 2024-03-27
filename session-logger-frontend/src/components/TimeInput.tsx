@@ -2,8 +2,6 @@
 interface Props {
   onChange: (selectedTime: string) => void;
   value: string;
-  //   min: number;
-  //   max: number;
 }
 
 const TimeInput = ({ onChange, value }: Props) => {
@@ -52,8 +50,6 @@ const TimeInput = ({ onChange, value }: Props) => {
         className="form-label"
         onChange={handleTimeChange}
         value={value}
-        // min={min}
-        // max={max
       ></input>
     </>
   );
