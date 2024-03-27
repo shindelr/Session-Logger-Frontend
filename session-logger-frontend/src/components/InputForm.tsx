@@ -19,6 +19,7 @@ const InputForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Store form data
     const formData = {
       spot,
       timeIn,
@@ -26,12 +27,13 @@ const InputForm = () => {
       rating,
     };
 
-    console.log(formData)
+    console.log(formData);
 
-    setSpot('')
-    setTimeIn('')
-    setTimeOut('')
-    setRating(0)
+    // Reset State Values
+    setSpot("");
+    setTimeIn("");
+    setTimeOut("");
+    setRating(0);
   };
 
   return (
@@ -41,6 +43,7 @@ const InputForm = () => {
           <label className="form-label"> Where'd ya surf?</label>
           <SelectMenu
             itemsArray={surfSpots}
+            value={spot}
             onChange={(selectedSpot: string) => {
               setSpot(selectedSpot);
             }}
@@ -50,6 +53,7 @@ const InputForm = () => {
         <div id="time-in-container">
           <label className="form-label"> What time did you get in?</label>
           <TimeInput
+            value={timeIn}
             onChange={(selectedTime: string) => {
               setTimeIn(selectedTime);
             }}
@@ -59,6 +63,7 @@ const InputForm = () => {
         <div id="time-out-container">
           <label className="form-label"> What time did you get out?</label>
           <TimeInput
+            value={timeOut}
             onChange={(selectedTime: string) => {
               setTimeOut(selectedTime);
             }}

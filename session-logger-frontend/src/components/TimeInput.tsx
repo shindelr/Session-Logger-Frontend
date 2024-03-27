@@ -1,11 +1,12 @@
 // Renders a time input component.
 interface Props {
-  onChange: (selectedTime: string) => void
-//   min: number;
-//   max: number;
+  onChange: (selectedTime: string) => void;
+  value: string;
+  //   min: number;
+  //   max: number;
 }
 
-const TimeInput = ({ onChange }: Props) => {
+const TimeInput = ({ onChange, value }: Props) => {
   //   Generate times of day by half hour increments
   const timeGenerator = () => {
     const times: string[] = [];
@@ -35,8 +36,8 @@ const TimeInput = ({ onChange }: Props) => {
 
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedTimeString: string = e.target.value;
-    onChange(selectedTimeString)
-  } 
+    onChange(selectedTimeString);
+  };
 
   return (
     <>
@@ -50,6 +51,7 @@ const TimeInput = ({ onChange }: Props) => {
         list="time-list"
         className="form-label"
         onChange={handleTimeChange}
+        value={value}
         // min={min}
         // max={max
       ></input>
