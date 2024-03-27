@@ -16,15 +16,26 @@ const InputForm = () => {
   const [timeOut, setTimeOut] = useState("");
   const [rating, setRating] = useState(0);
 
-  const formData = {
-    spot,
-    timeIn,
-    timeOut,
-    rating,
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = {
+      spot,
+      timeIn,
+      timeOut,
+      rating,
+    };
+
+    console.log(formData)
+
+    setSpot('')
+    setTimeIn('')
+    setTimeOut('')
+    setRating(0)
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="mb-3">
         <div id="spot-select-container">
           <label className="form-label"> Where'd ya surf?</label>
@@ -32,7 +43,6 @@ const InputForm = () => {
             itemsArray={surfSpots}
             onChange={(selectedSpot: string) => {
               setSpot(selectedSpot);
-              console.log(formData);
             }}
           />
         </div>
@@ -42,7 +52,6 @@ const InputForm = () => {
           <TimeInput
             onChange={(selectedTime: string) => {
               setTimeIn(selectedTime);
-              console.log(formData);
             }}
           />
         </div>
@@ -51,15 +60,18 @@ const InputForm = () => {
           <label className="form-label"> What time did you get out?</label>
           <TimeInput
             onChange={(selectedTime: string) => {
-              setTimeIn(selectedTime);
-              console.log(formData);
+              setTimeOut(selectedTime);
             }}
-         />
+          />
         </div>
 
         <div id="sesh-rating-container">
           <label className="form-label">How would you rate your session?</label>
-          <StarRater />
+          <StarRater
+            onChange={(selectedStars: number) => {
+              setRating(selectedStars);
+            }}
+          />
         </div>
 
         <div id="submit-btn-container">

@@ -2,13 +2,18 @@
 
 import { useState } from "react";
 
-const StarRater = () => {
+interface Props {
+  onChange: (selectedRating: number) => void;
+}
+
+const StarRater = ({ onChange }: Props) => {
   const [rating, setRating] = useState(1);
   const starArray: number[] = [0, 1, 2, 3, 4];
 
   const handleClick = (starIndex: number) => {
     setRating(starIndex);
     console.log(starIndex);
+    onChange(starIndex)
   };
 
   return (

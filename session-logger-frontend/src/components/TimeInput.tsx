@@ -1,5 +1,3 @@
-import { ReactEventHandler } from "react";
-
 // Renders a time input component.
 interface Props {
   onChange: (selectedTime: string) => void
