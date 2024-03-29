@@ -7,6 +7,7 @@ import TimeInput from "./timeInput";
 import StarRater from "./StarRater";
 import Button from "./SubmitButton";
 import { useState } from "react";
+import axios from "axios";
 
 const InputForm = () => {
   const surfSpots: string[] = ["Agate Beach", "Otter Rock", "South Beach"];
@@ -15,9 +16,11 @@ const InputForm = () => {
   const [timeIn, setTimeIn] = useState("");
   const [timeOut, setTimeOut] = useState("");
   const [rating, setRating] = useState<null | number>(null);
+  const [loadBool, setLoadBool] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoadBool(true);
 
     // Store form data
     const formData = {
@@ -27,7 +30,23 @@ const InputForm = () => {
       rating,
     };
 
+    // Check to make sure the data was saved
     console.log(formData);
+
+    // Try to post the data to the backend
+    try {
+      const response = await axios.post(
+        "http://localhost:5001/session_form_submission",
+        formData
+      );
+      console.log(response.data);
+      setLoadBool(false);
+      alert("Success!");
+    } catch (error) {
+      console.log("Error: " + error);
+      setLoadBool(false);
+      alert("Something went wrong. Try again please.");
+    }
 
     // Reset State Values
     setSpot("");
@@ -81,7 +100,14 @@ const InputForm = () => {
         </div>
 
         <div id="submit-btn-container">
-          <Button buttonType="primary" label="Submit" />
+          <Button
+            buttonType="primary"
+            label="Submit"
+            loadBool={loadBool}
+            onClick={() => {
+              handleSubmit;
+            }}
+          />
         </div>
       </div>
     </form>

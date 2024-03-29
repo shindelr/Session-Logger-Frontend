@@ -8,8 +8,8 @@ interface Props {
 
 function Header({ children }: Props) {
   return (
-    <div className="Header">
-      <h1 className="Page-Title">{children}</h1>
+    <div className="header">
+      <h1 className="page-title">{children}</h1>
     </div>
   );
 }
