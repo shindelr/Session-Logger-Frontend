@@ -8,6 +8,7 @@ import StarRater from "./StarRater";
 import Button from "./SubmitButton";
 import { useState } from "react";
 import axios from "axios";
+import DateInput from "./DateInput";
 
 const InputForm = () => {
   const surfSpots: string[] = ["Agate Beach", "Otter Rock", "South Beach"];
@@ -17,6 +18,7 @@ const InputForm = () => {
   const [timeOut, setTimeOut] = useState("");
   const [rating, setRating] = useState<null | number>(null);
   const [loadBool, setLoadBool] = useState(false);
+  const [date, setDate] = useState<Date>(new Date())
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ const InputForm = () => {
       timeIn,
       timeOut,
       rating,
+      date
     };
 
     // Check to make sure the data was saved
@@ -36,7 +39,8 @@ const InputForm = () => {
     // Try to post the data to the backend
     try {
       const response = await axios.post(
-        "http://localhost:5001/session_form_submission",
+        // "http://localhost:5001/session_form_submission",
+        "http://192.168.4.28:5001/session_form_submission",
         formData
       );
       console.log(response.data);
@@ -52,12 +56,14 @@ const InputForm = () => {
     setSpot("");
     setTimeIn("");
     setTimeOut("");
+    setDate(new Date());
     setRating(null);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
+
         <div id="spot-select-container">
           <label className="form-label"> Where'd ya surf?</label>
           <SelectMenu
@@ -66,6 +72,14 @@ const InputForm = () => {
             onChange={(selectedSpot: string) => {
               setSpot(selectedSpot);
             }}
+          />
+        </div>
+
+        <div id="date-input-container">
+          <label className="form-label"> What day did you surf?</label>
+          <DateInput
+            onChange={(selectedDate: Date) => {setDate(selectedDate)}}
+            value={date}
           />
         </div>
 
