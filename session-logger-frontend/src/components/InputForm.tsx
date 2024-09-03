@@ -54,7 +54,7 @@ const InputForm = () => {
 
     // Reset State Values
     setSpot("");
-    setTimeIn("");
+    setTimeIn(Date.now().toString());
     setTimeOut("");
     setDate(new Date());
     setRating(null);
@@ -79,7 +79,7 @@ const InputForm = () => {
           <label className="form-label"> What day did you surf?</label>
           <DateInput
             onChange={(selectedDate: Date) => {setDate(selectedDate)}}
-            value={date}
+            selected={date}
           />
         </div>
 

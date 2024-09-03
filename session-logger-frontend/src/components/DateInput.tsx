@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-date-picker.css";
-import "react-datepicker/dist/react-datepicker-cssmodules.css"
-
-// type ValuePiece = Date | null;
-// type Value = ValuePiece | [ValuePiece, ValuePiece];
+import "react-datepicker/dist/react-datepicker.css";
 
 interface Props {
     onChange: (selectedDate: any) => void;
-    value: any;
+    selected: any;
 }
 
-const DateInput = ({ onChange, value }: Props) => {
-    const [date, setDate] = useState<any>(value);
+const DateInput = ({ onChange, selected }: Props) => {
+    const [date, setDate] = useState<any>(selected);
 
     const handleDateChange = (selectedDate: any) => {
         setDate(selectedDate);
@@ -23,7 +19,7 @@ const DateInput = ({ onChange, value }: Props) => {
         <>
             <DatePicker
                 onChange={handleDateChange}
-                value={date}
+                selected={date}
             />
         </>
     );
