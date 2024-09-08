@@ -18,7 +18,7 @@ const InputForm = () => {
   const [timeOut, setTimeOut] = useState("");
   const [rating, setRating] = useState<null | number>(null);
   const [loadBool, setLoadBool] = useState(false);
-  const [date, setDate] = useState<Date>(new Date())
+  const [date, setDate] = useState<Date | string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ const InputForm = () => {
     setSpot("");
     setTimeIn(Date.now().toString());
     setTimeOut("");
-    setDate(new Date());
+    setDate("");
     setRating(null);
   };
 
@@ -71,6 +71,7 @@ const InputForm = () => {
             value={spot}
             onChange={(selectedSpot: string) => {
               setSpot(selectedSpot);
+              console.log(selectedSpot);
             }}
           />
         </div>

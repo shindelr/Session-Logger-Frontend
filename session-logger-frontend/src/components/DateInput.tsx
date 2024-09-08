@@ -13,6 +13,7 @@ const DateInput = ({ onChange, selected }: Props) => {
     const handleDateChange = (selectedDate: any) => {
         setDate(selectedDate);
         onChange(selectedDate);
+        selectedDate = selectedDate.toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
     }
 
     return (
@@ -20,6 +21,7 @@ const DateInput = ({ onChange, selected }: Props) => {
             <DatePicker
                 onChange={handleDateChange}
                 selected={date}
+                value={date}
             />
         </>
     );
