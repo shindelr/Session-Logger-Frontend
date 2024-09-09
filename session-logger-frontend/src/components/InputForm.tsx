@@ -45,16 +45,23 @@ const InputForm = () => {
       );
       console.log(response.data);
       setLoadBool(false);
-      alert("Success!");
+      alert(`Success! Posted: ${response.data.message}`);
     } catch (error) {
-      console.log("Error: " + error);
-      setLoadBool(false);
-      alert("Something went wrong. Try again please.");
+        if (axios.isAxiosError(error) && error.response) {
+          alert(`${error.response.data.message}`);
+          console.log("Error: " + error);
+          setLoadBool(false);
+        }
+        else {
+          console.log("Error: " + error);
+          alert("Something went wrong. Try again please.");
+          setLoadBool(false);
+        }
     }
 
     // Reset State Values
     setSpot("");
-    setTimeIn(Date.now().toString());
+    setTimeIn("");
     setTimeOut("");
     setDate("");
     setRating(null);
