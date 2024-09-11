@@ -5,7 +5,7 @@
 import SelectMenu from "./SelectMenu";
 import TimeInput from "./timeInput";
 import StarRater from "./StarRater";
-import Button from "./SubmitButton";
+import SubmitButton from "./SubmitButton";
 import { useState } from "react";
 import axios from "axios";
 import DateInput from "./DateInput";
@@ -122,7 +122,7 @@ const InputForm = () => {
         </div>
 
         <div id="submit-btn-container">
-          <Button
+          <SubmitButton
             buttonType="primary"
             label="Submit"
             loadBool={loadBool}
