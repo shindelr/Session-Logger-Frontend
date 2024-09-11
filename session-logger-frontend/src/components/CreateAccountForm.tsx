@@ -1,8 +1,8 @@
 import SubmitButton from "./SubmitButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CreateAccountForm = () => {
-  const [loadBool, setLoadBool] = useState(false);
+  const [loadBool, setLoadBool] = useState<boolean>(false);
   // State fields for the form
   const [formData, setFormData] = useState({
     firstName: "",
@@ -12,16 +12,29 @@ const CreateAccountForm = () => {
     confirmPassword: "",
     email: "",
   });
+  const [inputError, setInputError] = useState<String | null>(null);
 
+  // CHANGE HANDLER
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // const { name, value } = e.target, e.target.value;
-    const name: string = e.target.id;
+    const fieldName: string = e.target.id;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: e.target.value,
+      [fieldName]: e.target.value,
     }));
   };
 
+  // PASSWORD MATCHING CHECK
+  useEffect(() => {
+    if (formData.password && formData.confirmPassword) {
+    if (formData.password !== formData.confirmPassword) {
+      setInputError("Passwords do not match");
+    } else {
+      setInputError(null);
+    }
+  }
+  }, [formData.password, formData.confirmPassword]);
+
+  // SUBMISSION HANDLER
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoadBool(true);
@@ -40,6 +53,7 @@ const CreateAccountForm = () => {
           id="firstName"
           placeholder="First Name"
           onChange={handleChange}
+          required
         />
         <input
           type="text"
@@ -47,6 +61,7 @@ const CreateAccountForm = () => {
           id="lastName"
           placeholder="Last Name"
           onChange={handleChange}
+          required
         />
         <input
           type="email"
@@ -54,6 +69,7 @@ const CreateAccountForm = () => {
           id="email"
           placeholder="Email"
           onChange={handleChange}
+          required
         />
 
         <label className="formlabel">Login Information</label>
@@ -63,6 +79,7 @@ const CreateAccountForm = () => {
           id="username"
           placeholder="Username"
           onChange={handleChange}
+          required
         />
         <input
           type="password"
@@ -70,6 +87,7 @@ const CreateAccountForm = () => {
           id="password"
           placeholder="Password"
           onChange={handleChange}
+          required
         />
         <input
           type="password"
@@ -77,7 +95,11 @@ const CreateAccountForm = () => {
           id="confirmPassword"
           placeholder="Confirm Password"
           onChange={handleChange}
+          required
         />
+
+        {inputError && <div style={{ color: "red" }}>{inputError}</div>}
+
         <SubmitButton
           buttonType="primary"
           label="Create"
