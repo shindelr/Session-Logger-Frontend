@@ -3,7 +3,7 @@
 // and a submit button.
 
 import SelectMenu from "./SelectMenu";
-import TimeInput from "./timeInput";
+import TimeInput from "./TimeInput";
 import StarRater from "./StarRater";
 import SubmitButton from "./SubmitButton";
 import { useState } from "react";
