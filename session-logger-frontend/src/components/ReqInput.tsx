@@ -8,7 +8,7 @@ interface Props {
   onChange: (inputValue: string | number) => void;
 }
 
-const ReqInput = ({ type, id, placeholder, onChange, value}: Props) => {
+const ReqInput = ({ type, id, placeholder, onChange}: Props) => {
   const [inputValue, setInputValue] = useState<string | number>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
